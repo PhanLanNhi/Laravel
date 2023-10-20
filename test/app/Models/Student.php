@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Student extends Model
+{
+    use HasFactory;
+    protected $primaryKey = 'idStudent';
+     
+    protected $fillable = [
+        'name',
+        'email',
+        'gender',
+        'phone',
+        'idClass',
+    ];
+}

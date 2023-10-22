@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\BooksController;
+use App\Http\Controllers\BookController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +16,9 @@ use App\Http\Controllers\BooksController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return redirect()->route('authors.index');
+});
 
-Route::resource('authors', AuthorController::class);
-Route::resource('books', BooksController::class);
+Route::resource('/authors', AuthorController::class);
+Route::resource('/books', BookController::class);

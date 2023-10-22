@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Author;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -12,7 +13,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::orderBy('created_at', 'desc')->paginate(5);
+        return view('Book/index', compact('books'));
     }
 
     /**
@@ -20,7 +22,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $idAuthor = Author::all()->pluck('id');
+        return view('Book/add', compact('idAuthor'));
     }
 
     /**
@@ -28,8 +31,10 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Book::create($request->all());
+        return redirect()->route('books.index');
     }
+    
 
     /**
      * Display the specified resource.
@@ -44,7 +49,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        $idAuthor = Author::all()->pluck('id');
+        return view('Book/edit', compact('book', 'idAuthor'));
     }
 
     /**
@@ -52,7 +58,8 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $book->update($request->all());
+        return redirect()->route('books.index');
     }
 
     /**
@@ -60,6 +67,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect()->route('books.index');
     }
 }

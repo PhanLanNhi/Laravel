@@ -20,7 +20,7 @@
               <input type="text" name="id" id="id" class="form-control" value="{{$book->id}}" readonly>
             </div>
           <div class="mb-3">
-              <label for="author_id" class="form-label">Id Doctor</label>
+              <label for="author_id" class="form-label">Id Author</label>
                 <select name="author_id" id="author_id" class="form-control">
                   @foreach($idAuthor as $author_id)
                     <option value="{{$author_id}}" {{$author_id == $book->author_id ? "selected" : ""}}> {{$author_id}} </option>
